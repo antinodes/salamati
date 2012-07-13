@@ -12,11 +12,15 @@
  * @require plugins/AddLayers.js
  * @require plugins/RemoveLayer.js
  * @require RowExpander.js
+ * @require widgets/NewSourceDialog.js
+ * @require overrides/override-ext-ajax.js
  */
 
 var app;
 Ext.onReady(function() {
     app = new gxp.Viewer({
+    	proxy: "/geoserver/rest/proxy?url=",
+    	defaultSourceType: "gxp_wmscsource",
         portalConfig: {
             layout: "border",
             region: "center",
