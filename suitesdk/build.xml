@@ -29,6 +29,12 @@
         <property file="${sdk.home}/version.ini"/>
         <echo message="Suite Client SDK ${suite_version} (${build_revision})"/>
     </target>
+    
+    <target name="clean">
+		<delete includeemptydirs="true">
+			<fileset dir="${sdk.build}" includes="**/*"/>
+		</delete>
+    </target>
 
     <target name="checkpath">
         <echo file="${sdk.logfile}" append="true" message="Checking provided application path.${line.separator}"/>
@@ -77,7 +83,7 @@
         </java>
     </target>
 
-    <target name="build" depends="checkpath">
+    <target name="build" depends="checkpath,clean">
         <fail message="Directory '${app.fullpath}' doesn't exist." unless="app.exists"/>
         <echo file="${sdk.logfile}" append="true" message="Building application resources for '${app.fullpath}'.${line.separator}"/>
         <property name="app.build" location="${sdk.build}/${app.name}"/>
